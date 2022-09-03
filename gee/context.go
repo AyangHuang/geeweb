@@ -12,6 +12,9 @@ type Context struct {
 	Path       string
 	Method     string
 	StatusCode int
+	//中间件和该url的处理器
+	handlers []HandlerFunc
+	index    int
 }
 
 func newContext(w http.ResponseWriter, req *http.Request) *Context {
@@ -21,6 +24,15 @@ func newContext(w http.ResponseWriter, req *http.Request) *Context {
 		//方便直接访问
 		Path:   req.URL.Path,
 		Method: req.Method,
+		index:  -1,
+	}
+}
+
+func (c *Context) Next() {
+	c.index++
+	s := len(c.handlers)
+	for ; c.index < s; c.index++ {
+		c.handlers[c.index](c)
 	}
 }
 
