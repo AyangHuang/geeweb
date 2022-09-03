@@ -9,6 +9,9 @@ func hello(c *gee.Context) {
 }
 func main() {
 	e := gee.New()
-	e.POST("/web", hello)
+	g1 := e.Group("/login")
+	g1.Get("/get", hello)
+	g2 := e.Group("/user")
+	g2.POST("/post", hello)
 	e.RUN(":8080")
 }

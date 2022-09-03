@@ -7,6 +7,7 @@ import (
 
 type HandlerFunc func(c *Context)
 
+//router 实际路由的处理器
 type router struct {
 	handlers map[string]HandlerFunc
 }

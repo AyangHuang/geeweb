@@ -18,6 +18,7 @@ func newContext(w http.ResponseWriter, req *http.Request) *Context {
 	return &Context{
 		Writer: w,
 		Req:    req,
+		//方便直接访问
 		Path:   req.URL.Path,
 		Method: req.Method,
 	}
