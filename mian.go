@@ -1,6 +1,8 @@
 package main
 
-import "gee"
+import (
+	"gee"
+)
 
 func hello(c *gee.Context) {
 	urlGet := c.Query("get")
@@ -19,4 +21,5 @@ func main() {
 	}
 	e.POST("/post", hello)
 	e.RUN(":8080")
+
 }
