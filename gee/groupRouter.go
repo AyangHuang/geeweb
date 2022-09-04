@@ -18,9 +18,9 @@ type RouterGroup struct {
 	engine *Engine
 }
 
-func (group *RouterGroup) Use(handlerFunc HandlerFunc) {
+func (group *RouterGroup) Use(handlerFunc ...HandlerFunc) {
 	if handlerFunc != nil {
-		group.middlewares = append(group.middlewares, handlerFunc)
+		group.middlewares = append(group.middlewares, handlerFunc...)
 	}
 }
 
